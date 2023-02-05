@@ -20,7 +20,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
- * @author Priyanka
+ * @author Priyanka Jaiswal
  */
 public class Employee extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
@@ -243,7 +243,5 @@ public class Employee extends ActionSupport implements ApplicationAware, Session
         this.carAllowance = carAllowance;
     }
 
-    /**
-     * @return the employeeId
-     */
+    
 }
