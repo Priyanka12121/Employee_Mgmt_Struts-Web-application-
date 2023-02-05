@@ -20,7 +20,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
- * @author SAYANTA PAUL
+ * @author Priyanka
  */
 public class Employee extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
