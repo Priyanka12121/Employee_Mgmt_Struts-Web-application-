@@ -6,6 +6,7 @@ package com.exavalu.models;
 
 import com.exavalu.services.DepartmentService;
 import com.exavalu.services.EmployeeService;
+import com.exavalu.services.GeoMapService;
 import com.exavalu.services.LoginService;
 import com.exavalu.services.RoleService;
 import com.exavalu.services.UserService;
@@ -19,10 +20,6 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-/**
- *
- * @author SAYANTA PAUL
- */
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     private String firstName;
@@ -30,6 +27,10 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String emailAddress;
     private String password;
     private int status;
+    private String countryCode;
+    private String stateCode;
+    private String districtCode;
+
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -67,6 +68,33 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         return result;
     }
+    
+    public String doPreSignUp() throws Exception {
+        String result = "SUCCESS";
+
+        ArrayList countryList = GeoMapService.getAllCountries();
+        ArrayList stateList = null;
+        ArrayList districtList = null;
+
+        sessionMap.put("countryList", countryList);
+
+        if (this.countryCode != null && this.stateCode != null) {
+            stateList = GeoMapService.getStatesByCountryCode(this.countryCode);
+            districtList = GeoMapService.getDistrictsByStateCode(this.stateCode);
+            sessionMap.put("stateList", stateList);
+            sessionMap.put("districtList", districtList);
+            sessionMap.put("user", this);
+            result = "SUCCESS";
+        } else if (this.countryCode != null) {
+            stateList = GeoMapService.getStatesByCountryCode(this.countryCode);
+            sessionMap.put("stateList", stateList);
+            sessionMap.put("user", this);
+            result = "SUCCESS";
+        }
+
+        return result;
+    }
+
 
     public String doSignUp() throws Exception {
         String result = "FAILURE";
@@ -135,6 +163,48 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
      */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    /**
+     * @return the countryCode
+     */
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    /**
+     * @param countryCode the countryCode to set
+     */
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    /**
+     * @return the stateCode
+     */
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    /**
+     * @param stateCode the stateCode to set
+     */
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    /**
+     * @return the districtCode
+     */
+    public String getDistrictCode() {
+        return districtCode;
+    }
+
+    /**
+     * @param districtCode the districtCode to set
+     */
+    public void setDistrictCode(String districtCode) {
+        this.districtCode = districtCode;
     }
 
 }

@@ -30,32 +30,38 @@ public class UserService {
     }
 
     public boolean doSignUp(User user) {
-        boolean success = false;
-        ;
+       boolean result = false;
+
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String emailAddress = user.getEmailAddress();
+        String password = user.getPassword();
+        String countryCode = user.getCountryCode();
+        String stateCode = user.getStateCode();
+        String districtCode = user.getDistrictCode();
 
         try {
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "INSERT INTO users (emailAddress, password, firstName, lastName, status) VALUES (?, ?, ?, ?, ?);";
+            if (firstName != null && lastName != null && emailAddress != null && password != null && !"0".equals(countryCode) && !"0".equals(stateCode) && !"0".equals(districtCode)) {
+                Connection con = JDBCConnectionManager.getConnection();
+                String sql = "INSERT INTO users (firstName, lastName, emailAddress, password, countryCode, stateCode, districtCode, status) VALUES (?, ?, ?, ? ,? ,? ,? ,? );";
+                PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            System.out.println("entering try block");
-            
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, user.getEmailAddress());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getFirstName());
-            preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setInt(5, 1);
-
-            preparedStatement.executeUpdate();
-            System.out.println("LoginService :: " + preparedStatement);
-
-            success = true;
-
-            //con.close();
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, emailAddress);
+                preparedStatement.setString(4, password);
+                preparedStatement.setString(5, countryCode);
+                preparedStatement.setString(6, stateCode);
+                preparedStatement.setString(7, districtCode);
+                 preparedStatement.setInt(8, 1);
+                preparedStatement.executeUpdate();
+                result = true;
+//              
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return success;
+        return result;
     }
 }
