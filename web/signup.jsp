@@ -20,7 +20,7 @@
     </head>
     
     
-    <script>
+<!--    <script>
         function submitForm(event) {
             const countryCode = document.getElementById("countryCode");
             const stateCode = document.getElementById("stateCode");
@@ -32,8 +32,25 @@
             signupForm.submit();
         }
 
-    </script>
+    </script>-->
 
+
+ <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+                        function fetchContent(selectedId, targetId) {
+                            $.ajax({
+                                url: 'PreSignUp',
+                                data: {
+                                    [selectedId]: $("#" + selectedId).val()
+                                },
+                                success: function (responseText) {
+                                    $("#" + targetId).html(responseText);
+                                }
+                            });
+                        }
+    </script>
+    
+    
     <body class="text-center">
         <main class="form-signin w-100 m-auto">
             <form action="SignUp" method="post" id="signupForm">
@@ -97,9 +114,10 @@
                     <label for="floatingPassword">Password</label>
                 </div>
 
+                  
                 <div class="form-floating">
-                    <select name="countryCode" class="form-select rounded-0" id="countryCode" onchange="submitForm(event)">
-                        <option value="0">--Select a Country--</option>
+                    <select name="countryCode" class="form-select rounded-0" id="countryCode" onchange="fetchContent('countryCode', 'stateCode')">
+                        <option value="" > --Select a Country--</option>
 
                         <c:forEach var="country" items="${countryList}">
                             <option value="${country.getCountryCode()}" ${country.getCountryCode() == user.getCountryCode() ? "selected" : ""}>
@@ -111,27 +129,19 @@
                 </div>
 
                 <div class="form-floating">
-                    <select name="stateCode" class="form-select rounded-0" id="stateCode" onchange="submitForm(event)">
-                        <option value="0">--Select a State--</option>
+                    <select name="stateCode" class="form-select rounded-0" id="stateCode" onchange="fetchContent('stateCode', 'districtCode')">
+                        <option value=""hidden>--Select a State--</option>
 
-                        <c:forEach var="state" items="${stateList}">
-                            <option value="${state.getStateCode()}" ${state.getStateCode() == user.getStateCode() ? "selected" : ""}>
-                                ${state.getStateName()}
-                            </option>
-                        </c:forEach>
+
                     </select>
                     <label for="stateCode">State</label>
                 </div>
 
                 <div class="form-floating">
                     <select name="districtCode" class="form-select rounded-top-0" id="districtCode">
-                        <option value="0">--Select a District--</option>
+                        <option value=""hidden>--Select a District--</option>
 
-                        <c:forEach var="district" items="${districtList}">
-                            <option value="${district.getDistrictCode()}" ${district.getDistrictCode() == user.getDistrictCode() ? "selected" : ""}>
-                                ${district.getDistrictName()}
-                            </option>
-                        </c:forEach>
+
                     </select>
                     <label for="districtCode">District</label>
                 </div>

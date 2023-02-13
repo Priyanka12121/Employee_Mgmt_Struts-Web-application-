@@ -20,9 +20,14 @@
             <result name="FAILURE">signup.jsp</result>
         </action>  
         
+      
         <action name="PreSignUp" class="com.exavalu.models.User" method="doPreSignUp" >
 
             <result name="SUCCESS">signup.jsp</result>
+
+            <result name="STATE">state.jsp</result>
+
+            <result name="DISTRICT">district.jsp</result>
 
         </action>
         
@@ -48,6 +53,14 @@
         <action name="AddEmployee" class="com.exavalu.models.Employee" method="doAdd">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">addemployee.jsp</result>
+        </action>
+        
+        <action name="ConsumeAPI" class="com.exavalu.models.Employee" method="getDataFromAPI">
+
+            <result name="SUCCESS">printJsonObject.jsp</result>
+
+            <result name="FAILURE">login.jsp</result>
+
         </action>
 
     </package>
