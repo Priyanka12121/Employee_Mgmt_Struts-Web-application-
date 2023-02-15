@@ -68,7 +68,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         return result;
     }
-    
+    //THIS IS PRESIGNUP METHOD
    public String doPreSignUp() throws Exception {
         String result = "SUCCESS";
 
