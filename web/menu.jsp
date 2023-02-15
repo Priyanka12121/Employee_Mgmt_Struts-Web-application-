@@ -22,7 +22,7 @@
                     <li><a href="employeeDetails.jsp" class="nav-link px-2 text-white">Show Employee</a></li>
                     <li><a href="search.jsp" class="nav-link px-2 text-white">Search Employee</a></li>
                     <li><a href="Edit" class="nav-link px-2 text-white">Update Employee</a></li>
-                    
+                    <li><a href="ConsumeAPI" class="nav-link px-2 text-white">Get API Data</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -35,7 +35,7 @@
                     <a href="login.jsp">
                         <button type="button" class="btn btn-outline-light me-2" >Login</button>
                     </a>
-                    <a href="signup.jsp">
+                    <a href="PreSignUp">
                         <button type="button" class="btn btn-warning">Sign-up</button>
                     </a>
                     <%
