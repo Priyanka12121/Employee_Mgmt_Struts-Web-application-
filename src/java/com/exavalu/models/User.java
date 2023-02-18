@@ -19,6 +19,7 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.log4j.Logger;
 
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
@@ -45,6 +46,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public void setSession(Map<String, Object> session) {
         sessionMap = (SessionMap) session;
     }
+    
+   
 
     public String doLogin() throws Exception {
         String result = "FAILURE";
@@ -64,6 +67,9 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             result = "SUCCESS";
         } else {
             System.out.println("returning Failure from doLogin method");
+            Logger log = Logger.getLogger(LoginService.class.getName());
+
+            log.error("login failed due to wrong credentials");
         }
 
         return result;

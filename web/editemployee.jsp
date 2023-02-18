@@ -12,14 +12,14 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="css/signin.css" rel="stylesheet">
+        <!--<link href="css/signin.css" rel="stylesheet">-->
 
     </head>
 
     <body class="text-center">
 
 
-        <main class="form-signin w-100 m-auto">
+        <main class="form-signin w-25 m-auto">
 
            
 

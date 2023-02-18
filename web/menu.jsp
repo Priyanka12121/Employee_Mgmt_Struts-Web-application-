@@ -18,11 +18,11 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="addemployee.jsp" class="nav-link px-2 text-white">Add Employee</a></li>
-                    <li><a href="employeeDetails.jsp" class="nav-link px-2 text-white">Show Employee</a></li>
-                    <li><a href="search.jsp" class="nav-link px-2 text-white">Search Employee</a></li>
-                    <li><a href="Edit" class="nav-link px-2 text-white">Update Employee</a></li>
-                    <li><a href="ConsumeAPI" class="nav-link px-2 text-white">Get API Data</a></li>
+                    <li><a onclick="fetchContent('addemployee.jsp', 'targetId')" class="nav-link px-2 text-white">Add Employee</a></li>
+                     <li><a onclick="fetchContent('employeeDetails.jsp', 'targetId')" class="nav-link px-2 text-white" >Show Employee</a></li>
+                    <li><a onclick="fetchContent('search.jsp', 'targetId')"  class="nav-link px-2 text-white">Search Employee</a></li>
+                    <li><a onclick="fetchContent('Edit', 'targetId')"  class="nav-link px-2 text-white">Update Employee</a></li>
+                    <li><a onclick="fetchContent('ConsumeAPI', 'targetId')" class="nav-link px-2 text-white">Get API Data</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -39,8 +39,7 @@
                         <button type="button" class="btn btn-warning">Sign-up</button>
                     </a>
                     <%
-                        }
-                    else {%>
+                    } else {%>
 
                     <a href="Logout">
                         <button type="button" class="btn btn-outline-light me-2" >Log Out</button>
@@ -54,3 +53,21 @@
             </div>
         </div>
     </header>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script>
+
+                        function fetchContent(selectedId, targetId) {
+                            $.ajax({
+                                url: selectedId,
+
+                                success: function (responseText) {
+                                    $("#" + targetId).html(responseText);
+                                }
+                            });
+                        }
+    </script>
+    <body>
+        <div id="targetId"></div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

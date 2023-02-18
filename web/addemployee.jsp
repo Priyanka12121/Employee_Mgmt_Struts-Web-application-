@@ -31,7 +31,7 @@
         <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
         <meta name="theme-color" content="#712cf9">
 
-        <link href="css/signin.css" rel="stylesheet">
+        <!--<link href="css/signin.css" rel="stylesheet">-->
 
 
 
@@ -40,7 +40,7 @@
     </head>
     <body class="text-center">
 
-        <main class="form-signin w-100 m-auto">
+        <main class="form-signin w-25 m-auto">
             <form action="AddEmployee" method="post">
                 <img class="mb-4" src="images/flower-logo.jpg" alt="" width="100" height="100">
                 <h1 class="h3 mb-3 fw-normal">Please add employee details</h1>

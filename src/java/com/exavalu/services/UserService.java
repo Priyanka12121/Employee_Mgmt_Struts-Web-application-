@@ -9,6 +9,8 @@ import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -56,10 +58,12 @@ public class UserService {
                  preparedStatement.setInt(8, 1);
                 preparedStatement.executeUpdate();
                 result = true;
-//              
+              
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           
+           Logger log = Logger.getLogger(UserService.class.getName());
+           log.error(LocalDateTime.now() + " " + ex.getMessage());
         }
 
         return result;

@@ -6,7 +6,7 @@
 
     <package name="default" namespace="/" extends="struts-default">
         <action name="Login" class="com.exavalu.models.User" method="doLogin">
-            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="SUCCESS">main_landing.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>
         
@@ -62,6 +62,7 @@
             <result name="FAILURE">login.jsp</result>
 
         </action>
+       
 
     </package>
 </struts>
